@@ -1,0 +1,22 @@
+- name: make directory for site
+  tags: copy
+  ansible.builtin.file:
+    path: /home/test
+    state: directory
+    mode: 0644
+  notify: site_file_copy
+
+- name: install apache2 and php packages
+  tags: apache,httpd,php
+  apt: 
+    package: 
+      - "{{ apache_package_name }}"
+      - "{{ php_package_name }}"
+    state: latest
+
+- name: start and enable apache service
+  tags: apache,httpd
+  service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: yes

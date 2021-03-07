@@ -1,0 +1,8 @@
+- name: site_file_copy
+  tags: copy
+  copy:
+    src: /run/media/geo/DATA/Workspaces/Projects/Ansible/Getting started with Ansible - LearnLinuxTV/Appendix/site.html
+    dest: /home/test/index.html
+    owner: root
+    group: root
+    mode: 0644

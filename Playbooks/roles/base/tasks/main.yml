@@ -1,0 +1,14 @@
+- name: create user (simone)
+  tags: always
+  user: 
+    name: simone
+    groups: root
+
+- name: generate test template
+  tags: template
+  template:
+    src: "{{ template_file }}"
+    dest: /home/test
+    owner: root
+    group: root
+    mode: 0644

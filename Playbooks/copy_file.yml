@@ -1,0 +1,23 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: make directory for site
+    tags: copy
+    ansible.builtin.file:
+      path: /home/test
+      state: directory
+      mode: 0644
+    register: new_folder
+
+  - name: copy html for site
+    tags: copy
+    copy:
+      src: /run/media/geo/DATA/Workspaces/Projects/Ansible/Getting started with Ansible - LearnLinuxTV/Appendix/site.html
+      dest: /home/test/index.html
+      owner: root
+      group: root
+      mode: 0644
+    when: new_folder.changed
